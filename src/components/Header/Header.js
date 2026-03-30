@@ -54,6 +54,3 @@ export default function Header() {
     </header>
   );
 }
-
-
-// testing
