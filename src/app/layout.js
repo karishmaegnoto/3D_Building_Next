@@ -32,6 +32,10 @@ export default function RootLayout({ children }) {
         <title>3D Building Estimator - Create Your Dream Structure</title>
         <meta name="description" content="Interactive 3D building estimator for carports, barns, and custom structures" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider>
