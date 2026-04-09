@@ -48,7 +48,7 @@ export default function Header() {
         <div className="header__actions">
           <button
             className="header__btn header__btn--primary"
-            onClick={() => window.open("http://gripestimator.com/estimator/", "_blank")}
+            onClick={() => window.open("/estimator/", "_blank")}
           >
             <span className="btn-icon">🏗️</span>
             3D Estimator
