@@ -8,21 +8,24 @@ import { ThemeProvider } from '../components/ThemeProvider';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
+
   useEffect(() => {
-    const pathname = window.location.pathname;
-    const isLoginPage = pathname === '/login';
-    const isLogoutPage = pathname.startsWith('/api/');
+    const isAuthPage = window.location.pathname === '/login' || window.location.pathname.startsWith('/api/');
 
-    if (isLoginPage || isLogoutPage) return;
+    // Check if this specific tab has been authorized via login
+    const isTabAuthorized = sessionStorage.getItem('tab_authorized');
 
-    // Tab-session check: if this tab has never completed a login,
-    // redirect to /api/logout which clears the cookie server-side
-    // and then redirects to /login. This handles "close tab = new login required".
-    const isAuthorizedInTab = sessionStorage.getItem('estimator_is_authorized');
+    if (!isTabAuthorized && !isAuthPage) {
+      // Clear token and cookie if opening in a new unauthorized tab
+      localStorage.removeItem('token');
+      document.cookie = 'auth-token=; path=/; max-age=0';
+      window.location.href = '/login';
+      return;
+    }
 
-    if (!isAuthorizedInTab) {
-      // No tab-level session — force logout and re-login
-      window.location.replace('/api/logout');
+    const token = localStorage.getItem('token');
+    if (!token && !isAuthPage) {
+      window.location.href = '/login';
     }
   }, []);
 

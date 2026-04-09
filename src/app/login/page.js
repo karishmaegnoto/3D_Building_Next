@@ -13,32 +13,76 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError('');
+
+  //   try {
+  //     const res = await fetch('/api/login', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ username, password }),
+  //     });
+
+  //     const data = await res.json();
+
+  //     if (res.ok) {
+  //       // Successful login
+  //       sessionStorage.setItem('estimator_is_authorized', 'true');
+  //       router.push('/');
+  //       router.refresh(); // Refresh to ensure middleware picks up the new cookie
+  //     } else {
+  //       setError(data.message || 'Invalid credentials');
+  //     }
+  //   } catch (err) {
+  //     setError('An error occurred during authentication.');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const res = await fetch(
+        '/backend-api/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username,
+            password,
+            businessDbName: 'estimator_6847ed295e7fff0ff693d7c9',
+          }),
+        }
+      );
 
       const data = await res.json();
 
       if (res.ok) {
-        // Successful login
-        sessionStorage.setItem('estimator_is_authorized', 'true');
+        //Store JWT in localStorage and set a cookie for Next.js middleware
+        localStorage.setItem('token', data.token);
+
+        // Store explicit tab session to enforce single-tab session security
+        sessionStorage.setItem('tab_authorized', 'true');
+
+        // Also set auth-token cookie so middleware knows user is logged in
+        document.cookie = `auth-token=${data.token}; path=/; max-age=604800; samesite=strict`;
+
         router.push('/');
-        router.refresh(); // Refresh to ensure middleware picks up the new cookie
       } else {
         setError(data.message || 'Invalid credentials');
       }
     } catch (err) {
-      setError('An error occurred during authentication.');
+      setError('Server error. Try again.');
     } finally {
       setLoading(false);
     }

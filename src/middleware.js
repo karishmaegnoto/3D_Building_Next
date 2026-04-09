@@ -9,6 +9,7 @@ export function middleware(request) {
 
   const isPublicPath = publicPaths.includes(pathname) ||
     pathname.startsWith('/_next') ||
+    pathname.startsWith('/backend-api') ||
     (pathname.includes('.') && !pathname.endsWith('.html'));
 
   // No auth token + not a public path → redirect to login
