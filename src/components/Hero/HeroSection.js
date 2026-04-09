@@ -118,11 +118,11 @@ export default function Hero() {
           </p>
 
           <div className="hero__actions">
-            <button className="hero__btn hero__btn--primary">
+            <button className="hero__btn hero__btn--primary" onClick={() => alert('Coming Soon!')}>
               <span className="btn-icon">🚀</span>
               Start Building
             </button>
-            <button className="hero__btn hero__btn--secondary">
+            <button className="hero__btn hero__btn--secondary" onClick={() => alert('Coming Soon!')}>
               <span className="btn-icon">▶️</span>
               Watch Demo
             </button>
