@@ -1,7 +1,7 @@
-'use client';
-import { useState } from 'react';
-import { useTheme } from '../ThemeProvider';
-import ThemeToggle from '../Toggle/ThemeToggle';
+"use client";
+import { useState } from "react";
+import { useTheme } from "../ThemeProvider";
+import ThemeToggle from "../Toggle/ThemeToggle";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,28 +36,53 @@ export default function Header() {
           </div>
         </div>
 
-        <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
+        <nav className={`header__nav ${isMenuOpen ? "header__nav--open" : ""}`}>
           <ul className="header__nav-list">
-            <li><a href="#home" className="header__nav-link">Home</a></li>
-            <li><a href="#features" className="header__nav-link">Features</a></li>
-            <li><a href="#configurator" className="header__nav-link">Configure</a></li>
-            <li><a href="#contact" className="header__nav-link">Contact</a></li>
+            <li>
+              <a href="#home" className="header__nav-link">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#features" className="header__nav-link">
+                Features
+              </a>
+            </li>
+            <li>
+              <a href="#configurator" className="header__nav-link">
+                Configure
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="header__nav-link">
+                Contact
+              </a>
+            </li>
           </ul>
         </nav>
 
         <div className="header__actions">
-          <button
+          {/* 3D Estimator Button */}
+          {/* <button
             className="header__btn header__btn--primary"
-            onClick={() => window.open("/estimator/", "_blank")}
+            onClick={() => {
+              // Set a temporary cookie to allow access
+              document.cookie =
+                "allowEstimator=true; path=/; secure; samesite=strict";
+              window.open("/estimator/", "_blank");
+            }}
           >
             <span className="btn-icon">🏗️</span>
             3D Estimator
-          </button>
+          </button> */}
+
+          {/* Sales View Login */}
           <button
-            className="header__btn header__btn--secondary"
-            onClick={() => window.open("https://threed-chatbot-gd16.onrender.com/", "_blank")}>
-            <span className="btn-icon">🤖</span>
-            Meta AI
+            className="header__btn header__btn--primary"
+            onClick={() => window.open("https://gripestimator.com/salesview/login", "_blank")}
+          >
+            <span className="btn-icon"></span>
+            Sales View Login
           </button>
           <ThemeToggle />
 
@@ -72,6 +97,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-    </header >
+    </header>
   );
 }

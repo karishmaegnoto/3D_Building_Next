@@ -1,6 +1,5 @@
-
-'use client';
-import { useEffect, useRef } from 'react';
+"use client";
+import { useEffect, useRef } from "react";
 
 export default function Hero() {
   const canvasRef = useRef(null);
@@ -8,7 +7,7 @@ export default function Hero() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     let animationId;
 
     const resizeCanvas = () => {
@@ -87,22 +86,24 @@ export default function Hero() {
       initNodes();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationId);
     };
   }, []);
 
   return (
     <section className="hero" id="home">
-      <canvas ref={canvasRef} className="hero__canvas" aria-hidden="true"></canvas>
+      <canvas
+        ref={canvasRef}
+        className="hero__canvas"
+        aria-hidden="true"
+      ></canvas>
 
       <div className="hero__container">
         <div className="hero__content">
-          <div className="hero__eyebrow">
-            Next-Gen Structure Estimator
-          </div>
+          <div className="hero__eyebrow">Next-Gen Structure Estimator</div>
 
           <h1 className="hero__title">
             <span className="hero__title-main">
@@ -112,19 +113,42 @@ export default function Hero() {
           </h1>
 
           <p className="hero__description">
-            Design and customize carports, barns, and commercial buildings with our
-            cutting-edge 3D visualization technology. Get instant pricing and bring
-            your vision to life.
+            Design and customize carports, barns, and commercial buildings with
+            our cutting-edge 3D visualization technology. Get instant pricing
+            and bring your vision to life.
           </p>
 
           <div className="hero__actions">
-            <button className="hero__btn hero__btn--primary" onClick={() => alert('Coming Soon!')}>
+            {/* <button className="hero__btn hero__btn--primary" onClick={() => alert('Coming Soon!')}>
               <span className="btn-icon">🚀</span>
               Start Building
             </button>
             <button className="hero__btn hero__btn--secondary" onClick={() => alert('Coming Soon!')}>
               <span className="btn-icon">▶️</span>
               Watch Demo
+            </button> */}
+
+            {/* Meta AI Button */}
+            <button
+              className="hero__btn hero__btn--secondary"
+              onClick={() => window.open("https://grip.design", "_blank")}
+            >
+              <span className="btn-icon"></span>
+              Chat & Build
+            </button>
+
+            {/* 3D Estimator Button */}
+            <button
+              className="hero__btn hero__btn--primary"
+              onClick={() => {
+                // Set a temporary cookie to allow access
+                document.cookie =
+                  "allowEstimator=true; path=/; secure; samesite=strict";
+                window.open("/estimator/", "_blank");
+              }}
+            >
+              <span className="btn-icon"></span>
+              Build Your Own
             </button>
           </div>
 
