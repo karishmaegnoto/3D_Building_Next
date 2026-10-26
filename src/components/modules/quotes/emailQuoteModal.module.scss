@@ -1,0 +1,467 @@
+.emailQuoteBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 20px 20px;
+  overflow-y: auto;
+
+  .emailQuoteDialog {
+    width: 100%;
+    max-width: 640px;
+
+    .emailQuoteContent {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: var(--shadow-modal);
+
+      .emailQuoteBody {
+        position: relative;
+        padding: 30px 40px;
+
+        .emailQuoteDismiss {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          background: transparent;
+          border: none;
+          padding: 6px;
+          line-height: 1;
+          cursor: pointer;
+
+          &:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+          }
+        }
+
+        .emailQuoteHead {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          margin-bottom: 24px;
+
+          .emailQuoteIcon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50px;
+            background: #f5f5f4;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+          }
+
+          .emailQuoteTitle {
+            margin: 0;
+            color: var(--text);
+            font-size: 22px;
+            font-weight: 500;
+          }
+        }
+
+        .emailQuoteForm {
+          .emailQuoteSubhead {
+            margin: 20px 0 12px;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+          }
+
+          .emailQuoteRow {
+            display: flex;
+            gap: 12px;
+
+            .emailQuoteField {
+              flex: 1 1 0;
+              min-width: 0;
+            }
+          }
+
+          .emailQuoteField {
+            position: relative;
+            margin-bottom: 14px;
+
+            .emailQuoteInput {
+              width: 100%;
+              border: 1px solid var(--border-input);
+              border-radius: 8px;
+              background: var(--bg-input);
+              color: var(--text);
+              font-size: 13px;
+              font-family: inherit;
+              padding: 12px 14px;
+              box-sizing: border-box;
+              outline: none;
+              transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+
+              &::placeholder {
+                color: transparent;
+              }
+
+              &:hover:not(:disabled) {
+                border-color: var(--border-input-hover);
+              }
+
+              &:focus {
+                border-color: #0284c7;
+                background: var(--bg-input-focus);
+                box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+              }
+
+              &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+            }
+
+            .emailQuoteDropdownBox {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 10px;
+              border: 1px solid var(--border-input);
+              border-radius: 8px;
+              background: var(--bg-input);
+              color: var(--text);
+              font-size: 13px;
+              font-family: inherit;
+              padding: 12px 14px;
+              box-sizing: border-box;
+              outline: none;
+              cursor: pointer;
+              text-align: left;
+              line-height: 1.5;
+              transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+
+              &:hover:not(:disabled) {
+                border-color: var(--border-input-hover);
+              }
+
+              &:focus,
+              &.open {
+                border-color: #0284c7;
+                background: var(--bg-input-focus);
+                box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+              }
+
+              &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+
+              .emailQuoteDropdownValue {
+                flex: 1 1 auto;
+                min-width: 0;
+                color: var(--text);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+
+              .emailQuoteDropdownPlaceholder {
+                flex: 1 1 auto;
+                min-width: 0;
+                color: var(--text-placeholder);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+
+              .emailQuoteDropdownCaret {
+                flex: 0 0 auto;
+                width: 8px;
+                height: 8px;
+                border-right: 2px solid var(--text-muted);
+                border-bottom: 2px solid var(--text-muted);
+                transform: translateY(-2px) rotate(45deg);
+                transition: transform 0.15s ease;
+                pointer-events: none;
+
+                &.open {
+                  transform: translateY(2px) rotate(225deg);
+                }
+              }
+            }
+
+            .emailQuoteDropdownMenu {
+              position: absolute;
+              top: calc(100% + 6px);
+              left: 0;
+              right: 0;
+              z-index: 30;
+              background: var(--bg-menu);
+              border: 1px solid var(--border);
+              border-radius: 8px;
+              box-shadow: var(--shadow-menu);
+              padding: 6px;
+              display: flex;
+              flex-direction: column;
+              gap: 2px;
+              max-height: 200px;
+              overflow-y: auto;
+
+              .emailQuoteDropdownEmpty {
+                padding: 12px 10px;
+                text-align: center;
+                font-size: 13px;
+                color: var(--text-muted);
+              }
+
+              .emailQuoteDropdownItem {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                padding: 9px 10px;
+                border: none;
+                border-radius: 6px;
+                background: transparent;
+                cursor: pointer;
+                font-size: 13px;
+                font-family: inherit;
+                color: var(--text-soft);
+                text-align: left;
+
+                &:hover {
+                  background: var(--bg-menu-hover);
+                }
+
+                &.selected {
+                  background: rgba(2, 132, 199, 0.18);
+                  color: var(--text-on-dark);
+                }
+
+                .emailQuoteDropdownItemLabel {
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+              }
+            }
+
+            .emailQuoteTextarea {
+              min-height: 150px;
+              resize: vertical;
+              line-height: 1.5;
+            }
+
+            .emailQuoteLabel {
+              position: absolute;
+              top: 12px;
+              left: 14px;
+              color: var(--text-muted);
+              font-size: 13px;
+              font-weight: 500;
+              line-height: 1.5;
+              pointer-events: none;
+              background: transparent;
+              transition: top 0.15s ease, font-size 0.15s ease, padding 0.15s ease,
+                background-color 0.15s ease, color 0.15s ease;
+            }
+
+            .emailQuoteInput:focus ~ .emailQuoteLabel,
+            .emailQuoteInput:not(:placeholder-shown) ~ .emailQuoteLabel {
+              top: -8px;
+              font-size: 11px;
+              padding: 0 6px;
+              background: var(--bg-panel);
+              color: var(--text-muted);
+            }
+
+            .emailQuoteDropdownBox ~ .emailQuoteLabel {
+              top: -8px;
+              font-size: 11px;
+              padding: 0 6px;
+              background: var(--bg-panel);
+              color: var(--text-muted);
+            }
+          }
+
+          .emailQuoteAttachments {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 4px 0 6px;
+
+            .emailQuoteAttachmentsLabel {
+              color: var(--text-muted);
+              font-size: 13px;
+            }
+
+            .emailQuoteAddNew {
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              background: var(--bg-btn);
+              border: 1px solid var(--border-btn);
+              border-radius: 8px;
+              color: var(--text-on-dark);
+              font-size: 13px;
+              font-weight: 600;
+              padding: 9px 18px;
+              cursor: pointer;
+
+              &:hover:not(:disabled) {
+                background: var(--bg-btn-hover);
+              }
+
+              &:disabled {
+                opacity: 0.55;
+                cursor: not-allowed;
+              }
+
+              .emailQuoteFileInput {
+                display: none;
+              }
+            }
+          }
+
+          .emailQuoteFileList {
+            list-style: none;
+            margin: 0 0 6px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            .emailQuoteFileRow {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              border: 1px solid var(--border);
+              border-radius: 6px;
+              background: var(--bg-input);
+              padding: 8px 12px;
+
+              .emailQuoteFileIcon {
+                display: inline-flex;
+                flex: 0 0 auto;
+              }
+
+              .emailQuoteFileName {
+                flex: 1 1 auto;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: var(--text-soft);
+                font-size: 13px;
+              }
+
+              .emailQuoteFileSize {
+                flex: 0 0 auto;
+                color: var(--text-muted);
+                font-size: 12px;
+              }
+
+              .emailQuoteFileRemove {
+                flex: 0 0 auto;
+                background: transparent;
+                border: none;
+                padding: 4px;
+                line-height: 1;
+                cursor: pointer;
+
+                &:disabled {
+                  opacity: 0.45;
+                  cursor: not-allowed;
+                }
+              }
+            }
+          }
+
+          .emailQuoteMsg {
+            margin: 12px 0 14px;
+            min-height: 20px;
+            font-size: 13px;
+
+            .emailQuoteMsgSuccess {
+              color: #4ade80;
+            }
+
+            .emailQuoteMsgError {
+              color: #ff9b9f;
+            }
+          }
+
+          .emailQuoteFooter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .emailQuoteCancel {
+              background: transparent;
+              border: none;
+              color: var(--text-soft);
+              font-size: 13px;
+              font-weight: 600;
+              padding: 10px 18px;
+              cursor: pointer;
+
+              &:hover:not(:disabled) {
+                background: var(--bg-hover);
+              }
+
+              &:disabled {
+                opacity: 0.45;
+                cursor: not-allowed;
+              }
+            }
+
+            .emailQuoteSubmit {
+              background: var(--bg-btn);
+              border: 1px solid var(--border-btn);
+              border-radius: 8px;
+              color: var(--text-on-dark);
+              font-size: 13px;
+              font-weight: 600;
+              min-width: 90px;
+              height: 40px;
+              padding: 0 20px;
+              cursor: pointer;
+
+              &:hover:not(:disabled) {
+                background: var(--bg-btn-hover);
+              }
+
+              &:disabled {
+                opacity: 0.55;
+                cursor: not-allowed;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .emailQuoteBackdrop {
+    padding: 48px 12px 12px;
+
+    .emailQuoteDialog {
+      max-width: 100%;
+
+      .emailQuoteContent {
+        .emailQuoteBody {
+          padding: 24px 20px;
+
+          .emailQuoteForm {
+            .emailQuoteRow {
+              flex-direction: column;
+              gap: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

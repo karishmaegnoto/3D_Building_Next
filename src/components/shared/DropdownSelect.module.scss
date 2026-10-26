@@ -1,0 +1,154 @@
+
+.ddSelect {
+  position: relative;
+
+  .ddSelectBox {
+    width: 100%;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: transparent;
+    border: 1px solid var(--border-field);
+    border-radius: 8px;
+    padding: 0 14px;
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+
+    &:focus,
+    &.open {
+      border-color: var(--border-field-focus);
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .ddPlaceholder {
+      color: var(--text-placeholder);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ddValue {
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ddCaret {
+      flex-shrink: 0;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--text-caret);
+      transition: transform 0.15s ease;
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .ddLabel {
+    position: absolute;
+    top: -9px;
+    left: 12px;
+    padding: 0 4px;
+    margin: 0;
+    background: var(--bg-panel);
+    color: var(--text-label);
+    font-size: 11px;
+    font-weight: 500;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .ddMenu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: var(--bg-menu);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-menu);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .ddSearch {
+      width: 100%;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--border-input);
+      border-radius: 6px;
+      padding: 0 10px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+
+      &::placeholder {
+        color: var(--text-placeholder);
+      }
+
+      &:focus {
+        border-color: var(--border-field-focus);
+      }
+    }
+
+    .ddList {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-height: 180px;
+      overflow-y: auto;
+
+      .ddItem {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        color: var(--text-soft);
+
+        &:hover {
+          background: var(--bg-menu-hover);
+        }
+
+        .ddCheck {
+          width: 15px;
+          height: 15px;
+          flex-shrink: 0;
+          accent-color: var(--accent-check);
+          cursor: pointer;
+        }
+
+        .ddItemLabel {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .ddEmpty {
+        padding: 14px 10px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+    }
+  }
+}

@@ -1,0 +1,1054 @@
+$bg-main: var(--bg-dashboard);
+$bg-drawer: var(--bg-drawer);
+$bg-row: var(--bg-dashboard-card);
+$text: var(--text-icon);
+$text-dim: var(--text-ghost);
+$text-bright: var(--text-quote-bright);
+$border-soft: var(--border-dashboard-soft);
+$border-input: var(--border-quote-input);
+$sticky-checkbox-width: 54px;
+
+.wrapper {
+  background: $bg-main;
+  color: $text;
+  font-family: "Inter", sans-serif;
+  min-height: 100%;
+}
+
+// ---------------- Filter drawer ----------------
+.filterDiv {
+  width: 400px;
+  max-width: 400px;
+  padding: 0 50px;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 99999;
+  border-left: 1px solid var(--border-dashboard);
+  border-radius: 0;
+  background: $bg-drawer;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.filterDivHidden {
+  width: 400px;
+  max-width: 400px;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 99999;
+  border-left: 1px solid var(--border-dashboard);
+  background: $bg-drawer;
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.filterBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 10, 8, 0.58);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.filterBackdropVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filterMain {
+  display: flex;
+  padding-top: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.titleCaption {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+
+  h3 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+  }
+
+  p {
+    color: $text-dim;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+  }
+}
+
+.crossFilter {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  z-index: 99;
+  background: none;
+  border: none;
+  padding: 4px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.filterTop {
+  width: 100%;
+  display: flex;
+  padding-bottom: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.filterForm {
+  width: 100%;
+}
+
+.filterScroll {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+// ---------------- Floating fields ----------------
+.field {
+  margin-bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input,
+.select {
+  background: transparent;
+  display: flex;
+  min-height: 56px;
+  padding: 0 10px 0 12px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1px solid $border-input;
+  color: $text-dim;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 24px;
+  width: 100%;
+  font-family: inherit;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+    border-color: var(--text);
+    color: $text-bright;
+  }
+}
+
+.select {
+  cursor: pointer;
+  padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+
+  option {
+    background: $bg-main;
+    color: $text;
+  }
+}
+
+.selectMulti {
+  min-height: 56px;
+  height: auto;
+  padding-top: 22px;
+  padding-bottom: 6px;
+
+  option:checked {
+    background: var(--bg-option-checked);
+    color: var(--text);
+  }
+}
+
+// ---------------- Multi-select dropdown (bootstrap-select parity) ----------------
+.msDisplay {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  font-size: 13px;
+  color: $text-dim;
+}
+
+button.select {
+  justify-content: flex-start;
+  text-align: left;
+  font-family: inherit;
+}
+
+.msMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: var(--bg-dashboard);
+  border: 1px solid var(--border-lead-ghost);
+  border-radius: 4px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+  padding: 8px;
+}
+
+.msSearch {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border-quote-search);
+  background: transparent;
+  color: $text-bright;
+  font-size: 13px;
+  font-family: inherit;
+
+  &::placeholder {
+    color: $text-dim;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--text);
+  }
+}
+
+.msList {
+  max-height: 190px;
+  overflow-y: auto;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.msItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  color: $text;
+  margin: 0;
+  font-weight: 400;
+
+  &:hover {
+    background: var(--bg-quote-hover);
+    color: var(--text);
+  }
+}
+
+.msEmpty {
+  padding: 10px;
+  font-size: 12px;
+  color: $text-dim;
+  text-align: center;
+}
+
+.floatingLabel {
+  position: absolute;
+  left: 12px;
+  top: 17px;
+  color: $text-dim;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  padding: 0 4px;
+}
+
+.input:focus ~ .floatingLabel,
+.input:not(:placeholder-shown) ~ .floatingLabel,
+.select ~ .floatingLabel {
+  top: -7px;
+  font-size: 11px;
+  background: $bg-drawer;
+  color: $text-dim;
+  opacity: 1;
+  height: auto;
+  width: auto;
+}
+
+.input::placeholder {
+  color: transparent;
+}
+
+.fieldError {
+  color: #fb2c36;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.dateOption {
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin-bottom: 0;
+
+  .input {
+    padding-right: 40px;
+  }
+
+  // Date fields carry no floating label, so the PHP placeholders
+  // (YY-MM-DD / From / To) must stay visible.
+  .input::placeholder {
+    color: $text-dim;
+  }
+
+  svg {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+}
+
+.filterBtnRow {
+  width: 100%;
+  text-align: right;
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  left: 0;
+  right: 0;
+  background: $bg-drawer;
+  padding: 15px 0;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.btnOutline {
+  color: var(--text);
+  border: 1px solid $border-input;
+  background: transparent;
+  border-radius: 6px;
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: var(--bg-btn-ghost-hover);
+    color: var(--text);
+  }
+}
+
+.btnInfo {
+  color: var(--text);
+  border: 1px solid $border-input;
+  background: var(--bg-btn-dark);
+  border-radius: 6px;
+  min-height: 40px;
+  padding: 0 22px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--bg-btn-dark-hover);
+    border-color: var(--bg-btn-dark-hover);
+  }
+}
+
+// ---------------- Main listing ----------------
+.main {
+  width: 100%;
+  transition: none;
+}
+
+.block:global(.prtm-block) {
+  background: $bg-main;
+  border: none;
+  border-radius: 0;
+  position: relative;
+  // Scoped removal of the legacy .prtm-block 30px padding — quote-list only,
+  // so other pages using .prtm-block are untouched. Children (title, table,
+  // pagination) carry their own PHP-matched paddings.
+  padding: 0;
+}
+
+.blockTitle {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.funRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.funBtn {
+  border-radius: 6px;
+  background: var(--bg-dashboard-soft);
+  display: inline-flex;
+  min-height: 36px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  color: $text-bright;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--bg-quote-fun-hover);
+  }
+}
+
+.textWrapper {
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.text1,
+.text2 {
+  display: block;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.text2 {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.funBtn:hover .text1,
+.funBtn:hover .text2 {
+  transform: translateY(-100%);
+}
+
+.leadCounter {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.flashMsg {
+  padding: 0 20px;
+  color: #00c950;
+  font-size: 13px;
+  min-height: 20px;
+}
+
+.blockContent {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  min-height: 93vh;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  position: relative;
+  padding: 10px 20px 0;
+}
+
+// ---------------- Table ----------------
+.table {
+  min-width: 1200px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: $bg-row;
+  border: none;
+  border-radius: 8px;
+
+  thead tr {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  thead th,
+  tbody td {
+    color: $text;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    border-bottom: none;
+    border-top: none;
+    padding: 14px 12px;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: top;
+  }
+
+  thead th {
+    vertical-align: bottom;
+  }
+
+  thead th:first-child {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  tbody td {
+    border-top: 1px solid $border-soft;
+  }
+
+  tbody tr {
+    transition: background-color 0.2s ease;
+  }
+
+  tbody tr:hover {
+    background-color: $bg-main;
+  }
+}
+
+// Sticky checkbox column (from the view's inline <style>)
+.table thead th:first-child,
+.table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: $bg-row;
+  width: $sticky-checkbox-width;
+  min-width: $sticky-checkbox-width;
+  max-width: $sticky-checkbox-width;
+  padding-left: 12px;
+  padding-right: 8px;
+  text-align: center;
+}
+
+.table thead th:nth-child(2),
+.table tbody td:nth-child(2) {
+  position: sticky;
+  left: $sticky-checkbox-width;
+  z-index: 2;
+  background: $bg-row;
+  padding-left: 18px;
+}
+
+.table tbody tr:hover td:first-child,
+.table tbody tr:hover td:nth-child(2) {
+  background-color: $bg-main;
+}
+
+// Rounded table card: with border-spacing 0 the corner cells must carry the
+// radius themselves, otherwise sticky opaque cells poke out square.
+.table thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.nameCell {
+  display: inline-block;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  vertical-align: middle;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.table tbody tr:hover .nameCell {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.sortWrap {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.sortBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  line-height: 0;
+  opacity: 0.5;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    background: var(--bg-quote-fun-hover);
+    opacity: 1;
+  }
+
+  svg {
+    display: block;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.sortActive {
+  opacity: 1;
+}
+
+.sortActive svg path {
+  fill: var(--text);
+}
+
+.statusCell {
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-flex;
+  min-height: 24px;
+  padding: 0 10px;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.ls_success {
+  border: 1.5px solid #2b7fff;
+  background: #dbeafe;
+  color: #000;
+}
+
+.ls_unproduct,
+.ls_customer,
+.ls_isneed {
+  border: 1.5px solid #00c950;
+  background: #dcfce7;
+  color: #000;
+}
+
+.ls_taskbuilding {
+  border: 1.5px solid #fb2c36;
+  background: #ffe2e2;
+  color: #000;
+}
+
+.ls_incomplete {
+  border: 1.5px solid #ff6900;
+  background: #ffedd4;
+  color: #000;
+}
+
+.ls_inprogress {
+  border: 1.5px solid #ad46ff;
+  background: #f3e8ff;
+  color: #000;
+}
+
+// ---------------- Custom checkbox ----------------
+.checkbox {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0;
+  vertical-align: middle;
+
+  input {
+    display: none;
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 1px solid var(--text);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+.checkbox:hover .checkmark {
+  background-color: var(--bg-btn-dark);
+}
+
+.checkbox input:checked + .checkmark {
+  background-color: var(--text);
+  border-color: var(--text);
+}
+
+.checkbox input:checked + .checkmark::after {
+  display: block;
+}
+
+.emptyRow td {
+  color: #fb2c36;
+  text-align: center;
+  font-size: 16px;
+  padding: 24px 12px;
+}
+
+// ---------------- Bulk bar ----------------
+.bulkBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  color: $text-dim;
+  font-size: 13px;
+}
+
+.bulkDeleteBtn {
+  border-radius: 6px;
+  background: rgba(251, 44, 54, 0.12);
+  border: 1px solid rgba(251, 44, 54, 0.6);
+  color: #fda4a4;
+  min-height: 34px;
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: rgba(251, 44, 54, 0.28);
+  }
+}
+
+// ---------------- Pagination ----------------
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px 20px 8px;
+  list-style: none;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-lead-ghost);
+  background: transparent;
+  color: $text;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--bg-quote-fun-hover);
+    color: var(--text);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.pageActive {
+  background: var(--text);
+  color: var(--text-page-active);
+  border-color: var(--text);
+  font-weight: 600;
+}
+
+// ---------------- Delete modal ----------------
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  padding: 16px;
+}
+
+.modalOverlayOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalDialog {
+  width: 420px;
+  max-width: 100%;
+  transform: translateY(12px);
+  transition: transform 0.25s ease;
+}
+
+.modalOverlayOpen .modalDialog {
+  transform: translateY(0);
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 8px;
+  padding: 28px 24px;
+  text-align: center;
+  color: #131416;
+}
+
+.modalIcon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #131416;
+}
+
+.modalTitleError {
+  color: #fb2c36;
+}
+
+.modalText {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 0 20px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.modalNo {
+  background: unset;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #131416;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+}
+
+.modalYes {
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #131416;
+  color: #fff;
+  border: 1px solid #131416;
+  padding: 10px 26px;
+  border-radius: 6px;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: #000;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+// ---------------- Back to top ----------------
+.backTop {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-quote-search);
+  background: $bg-row;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 9000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+
+  &:hover {
+    background: var(--bg-btn-dark);
+  }
+}
+
+.backTopVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+// ---------------- Responsive ----------------
+@media screen and (max-width: 992px) {
+  .filterDiv,
+  .filterDivHidden {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 24px;
+  }
+
+  .blockTitle {
+    padding: 12px 12px 0;
+  }
+
+  .tableScroll {
+    padding: 0 12px;
+  }
+
+  .pagination {
+    padding: 14px 12px 8px;
+    justify-content: center;
+  }
+
+  .flashMsg {
+    padding: 0 12px;
+  }
+
+  .bulkBar {
+    padding: 10px 12px;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .filterBtnRow {
+    flex-direction: column;
+  }
+
+  .btnOutline,
+  .btnInfo {
+    width: 100%;
+  }
+
+  .modalActions {
+    flex-direction: column;
+  }
+
+  .funRow {
+    flex-wrap: wrap;
+  }
+
+  .backTop {
+    right: 14px;
+    bottom: 14px;
+  }
+}

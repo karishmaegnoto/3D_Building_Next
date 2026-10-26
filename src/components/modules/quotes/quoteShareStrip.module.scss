@@ -1,0 +1,199 @@
+.shareStripGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+    .shareStrip {
+      background: var(--bg-btn-dark);
+      border: 1px solid var(--border-lead-section);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text);
+
+    .shareStripRow {
+      .shareStripList {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 28px;
+
+        .shareStripItem {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: var(--text-soft);
+          font-size: 13px;
+          flex-wrap: wrap;
+
+          svg {
+            flex-shrink: 0;
+            color: var(--text-user-label);
+          }
+
+          .shareStripText {
+            color: var(--text-soft);
+          }
+
+          .shareStripStatus {
+            color: var(--text);
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .shareConversation {
+    .shareConversationSummary {
+      list-style: none;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+
+      .shareConversationBody {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 6px;
+        background: var(--bg-dashboard-soft);
+        border: 1px solid var(--border-section);
+
+        .shareConversationEmpty {
+          font-size: 13px;
+          color: var(--text-quote-nav);
+        }
+
+      .shareDiscussionList {
+        max-height: 240px;
+        overflow-y: auto;
+        padding-right: 4px;
+
+        .shareDiscussionItem {
+          margin-bottom: 12px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid var(--border-section);
+
+          .shareDiscussionMeta {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+
+            .shareDiscussionSender {
+              font-size: 12px;
+              font-weight: 600;
+              color: var(--text-share-strong);
+            }
+
+            .shareDiscussionDate {
+              font-size: 11px;
+              color: var(--text-ghost);
+            }
+          }
+
+          .shareDiscussionText {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text);
+            word-break: break-word;
+          }
+        }
+      }
+
+      .shareDiscussionForm {
+        margin-top: 12px;
+
+          textarea {
+            width: 100%;
+            resize: vertical;
+            border: 1px solid var(--border-approve);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--text);
+            background: var(--bg-share-input);
+          box-sizing: border-box;
+          outline: none;
+
+            &::placeholder {
+              color: var(--text-share-placeholder);
+            }
+
+            &:focus {
+              border-color: var(--border-lead-ghost-hover);
+            }
+        }
+
+        .shareDiscussionActions {
+          margin-top: 10px;
+          text-align: right;
+
+            .shareDiscussionSubmit {
+              background: var(--text);
+              color: var(--text-share-btn);
+            border: 0;
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+
+            &:disabled {
+              opacity: 0.45;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .shareStripGroup {
+    .shareStrip {
+      padding: 10px 12px;
+
+      .shareStripRow {
+        .shareStripList {
+          .shareStripItem {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.quoteTitleGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+
+  .quoteSentBadge {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(0, 201, 80, 0.14);
+    border: 1px solid rgba(0, 201, 80, 0.5);
+    color: #4ade80;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,488 @@
+.approval-drawer-panel {
+  display: none;
+}
+
+.approval-drawer-panel.is-active {
+  display: block;
+}
+
+.approval-empty-state {
+  padding: 18px 8px;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+body.approval-drawer-open .approval-drawer-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.approval-drawer-open .approval-drawer {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.approval-drawer .notification-drawer-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 14px 20px 0;
+  overflow-x: scroll;
+  white-space: normal;
+  margin-bottom: 20px;
+  overflow-y: hidden;
+}
+
+.approval-drawer .notification-drawer-tab {
+  border-bottom: 0;
+  border-radius: 999px;
+  background: #f4efea;
+  color: #6f625b;
+  padding: 8px 12px;
+  flex: 0 1 auto;
+  white-space: nowrap;
+  height: 34px;
+  margin-bottom: 20px;
+}
+
+.approval-drawer .notification-drawer-tab.is-active {
+  background: #211814;
+  color: #ffffff;
+}
+
+.approval-drawer .notification-drawer-tab.is-active .notification-drawer-tab-count {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.lead-owner-notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 20px 16px;
+}
+
+.lead-owner-notification-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  box-shadow: 0 8px 20px rgba(33, 24, 20, 0.05);
+}
+
+.lead-owner-notification-card__icon {
+  width: 46px;
+  min-width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #f7f3ef;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lead-owner-notification-card__content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.lead-owner-notification-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lead-owner-notification-card__top h4 {
+  margin: 0;
+  color: #211814;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+}
+
+.lead-owner-notification-card__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 82px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.lead-owner-notification-card__status.is-pending {
+  background: #fff3d8;
+  color: #161616;
+}
+
+.lead-owner-notification-card__status.is-approved {
+  background: #e5f6ea;
+  color: #161616;
+}
+
+.lead-owner-notification-card__status.is-rejected {
+  background: #fde8e5;
+  color: #161616;
+}
+
+.lead-owner-notification-card__meta {
+  margin-top: 4px;
+  color: #6f625b;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.lead-owner-notification-card__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+  color: #6f625b;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.lead-owner-notification-card__action {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f7f3ef;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.lead-owner-notification-card__action:hover {
+  background: #efe7df;
+}
+
+@media (max-width: 480px) {
+  .approval-drawer .notification-drawer-tabs {
+    gap: 6px;
+    padding: 12px 16px 0;
+  }
+
+  .approval-drawer .notification-drawer-tab {
+    font-size: 11px;
+    padding: 7px 10px;
+  }
+
+  .approval-drawer .notification-drawer-tab-count {
+    min-width: 16px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 9px;
+  }
+}
+
+.approval-drawer .notification-drawer-body {
+  overflow-y: auto;
+  padding: 0 0 12px;
+  display: flex;
+  height: 100%;
+}
+
+.dropdown-menu.notification-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  float: none;
+  width: min(100vw, 352px);
+  margin: 0;
+  padding: 0;
+  background: var(--bg-panel);
+  border: 0;
+  border-left: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-drawer);
+  transform: translateX(100%);
+  transition: transform 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+body.notification-drawer-open .dropdown-menu.notification-drawer:not(.approval-drawer) {
+  transform: translateX(0);
+}
+
+body.notification-drawer-open .dropdown-menu.notification-drawer.approval-drawer {
+  transform: translateX(100%);
+}
+
+body.approval-drawer-open .dropdown-menu.notification-drawer.approval-drawer {
+  transform: translateX(0);
+}
+
+body.approval-drawer-open .dropdown-menu.notification-drawer:not(.approval-drawer) {
+  transform: translateX(100%);
+}
+
+.notification-drawer .notification-drawer-header h3 {
+  color: var(--text);
+}
+
+.notification-drawer .notification-drawer-close {
+  color: var(--text);
+}
+
+.notification-drawer .notification-drawer-close:hover {
+  color: var(--text);
+  opacity: 0.75;
+}
+
+.notification-drawer .notification-drawer-tabs {
+  border-bottom-color: var(--border);
+}
+
+.notification-drawer .notification-drawer-tab {
+  color: var(--text-muted);
+}
+
+.notification-drawer .notification-drawer-tab.is-active {
+  border-bottom-color: var(--text);
+  color: var(--text);
+}
+
+.notification-drawer .notification-drawer-tab-count {
+  background: var(--bg-count);
+  color: var(--text-count);
+}
+
+.notification-drawer .notification-drawer-tab.is-active .notification-drawer-tab-count {
+  background: var(--bg-count-active);
+  color: var(--text-count-active);
+}
+
+.notification-drawer .notification-drawer-meta {
+  color: var(--text-muted);
+}
+
+.notification-drawer.new_notify_box {
+  border-color: var(--border);
+}
+
+.notification-drawer .new_notify_box li a,
+.notification-drawer.new_notify_box li a {
+  color: var(--text-soft);
+}
+
+.notification-drawer .user-thumb {
+  background: var(--bg-icon-soft);
+}
+
+.notification-drawer .user-thumb svg {
+  color: var(--text-soft);
+}
+
+.notification-drawer .user-content h6 {
+  color: var(--text);
+}
+
+.notification-drawer .user-content span {
+  color: var(--text-muted);
+}
+
+.notification-drawer .drop-title,
+.notification-drawer li .drop-title {
+  color: var(--text-ghost);
+}
+
+.notification-drawer .notification-drawer-footer {
+  background: transparent;
+  border-top: 1px dashed var(--border);
+  padding: 16px 22px 22px;
+  display: block;
+}
+
+.notification-drawer .notification-drawer-footer-btn {
+  width: 100%;
+  min-height: 46px;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 0 14px;
+  color: var(--text) !important;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.notification-drawer .notification-drawer-footer-btn svg path {
+  fill: var(--text);
+}
+
+.approval-drawer .notification-drawer-tab {
+  background: var(--bg-pill);
+  color: var(--text-pill);
+}
+
+.approval-drawer .notification-drawer-tab.is-active {
+  background: var(--bg-pill-active);
+  color: var(--text-pill-active);
+}
+
+.approval-drawer .notification-drawer-tab.is-active .notification-drawer-tab-count {
+  background: var(--bg-count-active);
+  color: var(--text-count-active);
+}
+
+.lead-owner-notification-card {
+  background: var(--bg-card);
+  border-color: var(--border-card);
+  box-shadow: var(--shadow-card);
+}
+
+.lead-owner-notification-card__top h4 {
+  color: var(--text);
+}
+
+.lead-owner-notification-card__icon {
+  background: var(--bg-icon-soft);
+}
+
+.lead-owner-notification-card__icon svg path {
+  fill: var(--text-soft);
+}
+
+.lead-owner-notification-card__meta {
+  color: var(--text-card-meta);
+}
+
+.lead-owner-notification-card__time {
+  color: var(--text-card-meta);
+}
+
+.lead-owner-notification-card__action {
+  background: var(--bg-action);
+}
+
+.lead-owner-notification-card__action:hover {
+  background: var(--bg-action-hover);
+}
+
+.lead-owner-notification-card__action svg path {
+  fill: var(--text-soft);
+}
+
+.lead-owner-notification-card {
+  &.is-viewed {
+    background: var(--bg-card-viewed);
+
+    > .lead-owner-notification-card__content {
+      > .lead-owner-notification-card__top {
+        > h4 {
+          color: var(--text-muted);
+        }
+      }
+
+      > .lead-owner-notification-card__meta {
+        color: var(--text-faint);
+      }
+
+      > .lead-owner-notification-card__time {
+        color: var(--text-faint);
+      }
+    }
+
+    > .lead-owner-notification-card__icon {
+      opacity: 0.55;
+    }
+  }
+}
+
+.approval-empty-state {
+  color: var(--text-muted);
+}
+
+#approvalDrawerToggle,
+#notificationDrawerToggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #a6a09b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--text, #f5f5f4);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .badge-danger {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: inline-block;
+    min-width: 18px;
+    height: 18px;
+    margin: 0;
+    border-radius: 999px;
+    background: #c27b55;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: top;
+    white-space: nowrap;
+    padding: 0 5px;
+  }
+}
+
+.notification-drawer {
+  > .notification-drawer-body {
+    > .notification-drawer-list {
+      > .new_notify {
+        > a {
+          color: #e7e5e4;
+
+          > .user-thumb {
+            background: rgba(255, 255, 255, 0.08);
+          }
+
+          > .user-content {
+            > h6 {
+              color: #ffffff;
+            }
+
+            > span {
+              color: #a8a29e;
+            }
+          }
+        }
+      }
+    }
+  }
+}

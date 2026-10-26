@@ -1,0 +1,91 @@
+:root {
+  /* Color Palette - Modern Acrobat Dark Slate Theme */
+  --bg-app: #1a1e24;
+  --bg-header: #14171c;
+  --bg-toolbar: #1e232b;
+  --bg-workspace: #282e38;
+  --bg-surface: #222832;
+  --bg-surface-hover: #2c333f;
+  --bg-input: #171b21;
+  --bg-modal-backdrop: rgba(10, 12, 16, 0.75);
+
+  /* Primary Accent & Brand */
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-glow: rgba(59, 130, 246, 0.35);
+  --primary-subtle: rgba(59, 130, 246, 0.12);
+  --accent-red: #ef4444;
+  --accent-green: #10b981;
+
+  /* Text Colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  /* Borders & Dividers */
+  --border-color: #2e3744;
+  --border-subtle: #242c37;
+  --border-focus: #3b82f6;
+
+  /* Field Overlay Styling */
+  --field-bg: rgba(238, 242, 255, 0.85);
+  --field-border: #93c5fd;
+  --field-selected-border: #2563eb;
+  --field-selected-glow: rgba(37, 99, 235, 0.35);
+  --field-existing-border: #cbd5e1;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-pdf-page: 0 12px 36px -4px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+
+  /* Typography & Sizing */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-family);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-workspace);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f4756;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #525d70;
+}

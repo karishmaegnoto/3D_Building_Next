@@ -1,0 +1,2062 @@
+$bg-page: var(--bg-dashboard);
+$bg-subcard: var(--bg-lead-subcard);
+$border-charcoal: var(--border-lead-strong);
+$border-subtle: var(--border-lead);
+$text-primary: var(--text);
+$text-secondary: var(--text-icon);
+$text-muted: var(--text-lead-faint);
+$text-placeholder: var(--text-lead-placeholder);
+$input-bg: var(--bg-input);
+$input-border: var(--border-lead-input);
+$input-border-focus: var(--border-lead-input-focus);
+$required-red: #ef4444;
+$active-tab-bg: var(--bg-lead-tab-active);
+$cyan-chat: #06b6d4;
+
+.addLeadContainer {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  height: auto;
+  background-color: var(--bg-form);
+  color: $text-secondary;
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  align-items: stretch;
+}
+
+// ==========================================================
+// Sub-Navigation Left Sidebar (Sticky Pills)
+// ==========================================================
+.subSidebar {
+  width: 190px;
+  background-color: $bg-page;
+  border-right: 1px solid $border-subtle;
+  padding: 24px 12px;
+  flex-shrink: 0;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  align-self: flex-start;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg-scroll-form);
+  }
+}
+
+.subSidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subNavItem {
+  display: flex;
+  align-items: center;
+  padding: 9px 14px;
+  color: $text-muted;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--text);
+    background-color: var(--bg-lead-nav-hover);
+  }
+
+  &.active {
+    color: $text-primary;
+    background-color: $active-tab-bg;
+    font-weight: 600;
+  }
+}
+
+// ==========================================================
+// Main Form Area
+// ==========================================================
+.formAreaWrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: visible;
+}
+
+.formArea {
+  flex: 1;
+  width: 100%;
+  padding: 24px 36px 80px;
+  overflow: visible;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg-scroll-form);
+    border-radius: 3px;
+  }
+
+  form {
+    width: 100%;
+  }
+}
+
+// ==========================================================
+// Form Sections
+// ==========================================================
+.formSection {
+  width: 100%;
+  margin-bottom: 36px;
+  scroll-margin-top: 80px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.sectionTitleGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.accentMarker {
+  width: 28px;
+  height: 3.5px;
+  background-color: var(--text);
+  border-radius: 2px;
+  display: block;
+}
+
+.topSectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.sectionBottomMarker {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.saveButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background-color: var(--text);
+  color: var(--text-on-lead-btn);
+  border: 1px solid var(--border-lead-btn);
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  svg {
+    width: 14px;
+    height: 14px;
+    color: var(--text-on-lead-btn);
+  }
+
+  &:hover {
+    background-color: var(--bg-lead-btn-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(255, 255, 255, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.sectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: 0.1px;
+  margin: 0;
+}
+
+// ==========================================================
+// Form Grids (Full width by default)
+// ==========================================================
+.grid2Cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 28px;
+  row-gap: 28px;
+  width: 100%;
+  margin-bottom: 28px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.width60 {
+  width: 60% !important;
+  max-width: 60% !important;
+
+  @media (max-width: 992px) {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+.grid3Cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 28px;
+  row-gap: 28px;
+  width: 100%;
+  margin-bottom: 28px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.addressRow2 {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr 1.1fr;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid4Cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 16px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+// ==========================================================
+// Notched Outline Floating Fields
+// ==========================================================
+.notchedField {
+  position: relative;
+  width: 100%;
+  border: 1px solid $input-border;
+  border-radius: 6px;
+  background-color: $bg-page;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  align-items: center;
+
+  &:focus-within {
+    border-color: $input-border-focus;
+  }
+
+  &.error {
+    border-color: $required-red;
+  }
+}
+
+.notchedLabel {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background-color: $bg-page;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: $text-secondary;
+  pointer-events: none;
+  z-index: 2;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: all 0.15s ease;
+
+  .required {
+    color: $required-red;
+    margin-left: 2px;
+  }
+}
+
+.notchedField:focus-within .notchedLabel,
+.notchedField.hasValue .notchedLabel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notchedInput,
+.notchedSelect {
+  width: 100%;
+  height: 44px;
+  background: $input-bg;
+  border: none;
+  border-radius: 5px;
+  padding: 0 14px;
+  color: $text-primary;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+
+  &::placeholder {
+    color: $text-placeholder;
+    font-size: 13px;
+    transition: opacity 0.15s ease;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--bg-dashboard) inset !important;
+    box-shadow: 0 0 0 1000px var(--bg-dashboard) inset !important;
+    -webkit-text-fill-color: $text-primary !important;
+    caret-color: $text-primary !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  &[type="datetime-local"] {
+    color-scheme: inherit;
+    cursor: pointer;
+
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.notchedField:focus-within .notchedInput::placeholder {
+  opacity: 0;
+}
+
+.notchedSelect {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 32px;
+  background-color: transparent;
+
+  option {
+    background-color: var(--bg-dashboard);
+    color: var(--text);
+  }
+}
+
+.selectArrow {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  color: $text-muted;
+  display: grid;
+  place-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  color: $text-muted;
+  display: grid;
+  place-items: center;
+}
+
+.notchedTextarea {
+  width: 100%;
+  background: $input-bg;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 14px;
+  color: $text-primary;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 90px;
+
+  &::placeholder {
+    color: $text-placeholder;
+    font-size: 13px;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--bg-dashboard) inset !important;
+    box-shadow: 0 0 0 1000px var(--bg-dashboard) inset !important;
+    -webkit-text-fill-color: $text-primary !important;
+    caret-color: $text-primary !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+// ==========================================================
+// Primary Email Sub-Card
+// ==========================================================
+.primaryEmailCard {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.primaryEmailHeader {
+  margin-bottom: 12px;
+}
+
+.primaryEmailTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0 0 4px;
+}
+
+.primaryEmailSubtitle {
+  font-size: 12px;
+  color: $text-muted;
+  margin: 0;
+}
+
+.emailColsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  margin-top: 14px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.emailCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  .notchedField {
+    width: 100%;
+  }
+}
+
+.radioLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: $text-secondary;
+  user-select: none;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .radioCustom {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--text-lead-faint);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: all 0.15s ease;
+
+    &::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: background-color 0.15s ease;
+    }
+  }
+
+  input[type="radio"]:checked+.radioCustom {
+    border-color: var(--text);
+
+    &::after {
+      background-color: var(--text);
+    }
+  }
+
+  .radioText {
+    font-size: 13px;
+    color: $text-primary;
+  }
+}
+
+// ==========================================================
+// Dimensions Sub-Box & Accordions (Building Information)
+// ==========================================================
+.dimensionsBox {
+  width: 100%;
+  background-color: $bg-subcard;
+  border: 1px solid $border-charcoal;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+
+.subBoxTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0 0 14px;
+}
+
+.accordionsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.accordionItem {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  width: 100%;
+  min-height: 58px;
+  background: var(--bg-lead-accordion);
+  border: 1px solid #d6d3d1;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:has(.accordionBody) {
+    justify-content: flex-start;
+    padding: 20px 16px;
+    gap: 20px;
+    background: var(--bg-lead-accordion-open);
+    min-height: auto;
+    height: auto;
+  }
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 28px;
+  background: transparent;
+  border: none;
+  color: var(--text-lead-accordion);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  span:first-child {
+    flex: 1;
+    text-align: left;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+}
+
+.accordionIconBox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 3px;
+  gap: 10px;
+  background: var(--bg-lead-accordion-open);
+  border: 1px solid var(--bg-lead-accordion-open);
+  border-radius: 4px;
+  color: var(--text-lead-accordion);
+  transition: all 0.15s ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: inherit;
+  }
+}
+
+.accordionItem:has(.accordionBody) .accordionHeader {
+  color: var(--text-lead-accordion-open);
+}
+
+.accordionItem:has(.accordionBody) .accordionIconBox {
+  background: var(--bg-lead-accordion-icon);
+  border-color: var(--bg-lead-accordion-open);
+  color: var(--text-lead-accordion-open);
+}
+
+.accordionHeader:hover .accordionIconBox {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: var(--text);
+}
+
+.accordionBody {
+  padding: 0;
+  border-top: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.doorCardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.doorCard {
+  background-color: var(--bg-dashboard);
+  border: 1px solid var(--border-door);
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+
+  .notchedLabel {
+    background: var(--bg-dashboard);
+  }
+}
+
+.doorCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.doorCardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.6px;
+}
+
+.deleteDoorBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-dashboard-dim);
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    color: inherit;
+  }
+
+  &:hover {
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+}
+
+.doorCheckboxRow {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 2px 0 4px;
+}
+
+.doorCheckboxItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--text-lead-bright);
+  user-select: none;
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 13.5px;
+    height: 13.5px;
+    background-color: var(--text);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    display: grid;
+    place-items: center;
+    margin: 0;
+
+    &:checked::after {
+      content: "";
+      width: 4px;
+      height: 8px;
+      border: solid var(--text-on-lead-btn);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-0.5px, -0.5px);
+      display: block;
+    }
+  }
+}
+
+.doorNotesRow {
+  width: 100%;
+
+  .notchedField {
+    width: 100%;
+  }
+}
+
+.addDoorAction {
+  margin-top: 4px;
+  display: flex;
+}
+
+.addDoorBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background-color: var(--bg-lead-ghost-btn);
+  border: 1px solid var(--border-lead-ghost);
+  border-radius: 6px;
+  color: var(--text-lead-bright);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: var(--bg-menu-hover);
+    border-color: var(--border-lead-ghost-hover);
+    color: var(--text);
+  }
+}
+
+.walkinGridRow,
+.windowGridRow {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 140px;
+  gap: 16px;
+  width: 100%;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ==========================================================
+// Attachments Dropzone
+// ==========================================================
+.dropzone {
+  border: 1.5px dashed $border-charcoal;
+  border-radius: 8px;
+  padding: 36px 20px;
+  text-align: center;
+  background-color: $input-bg;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--border-drop-hover);
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  svg {
+    color: $text-muted;
+    margin-bottom: 12px;
+  }
+}
+
+.fileInputHidden {
+  display: none;
+}
+
+.dropzoneText {
+  font-size: 13px;
+  color: $text-primary;
+  margin: 0 0 4px;
+}
+
+.browseLink {
+  color: #38bdf8;
+  text-decoration: underline;
+}
+
+.dropzoneSub {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.fileList {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: var(--bg-input);
+  border: 1px solid $border-subtle;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.fileName {
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.fileSize {
+  color: $text-muted;
+}
+
+.removeFileBtn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+// ==========================================================
+// Floating Chat Button
+// ==========================================================
+.floatingChatBtn {
+  position: fixed;
+  bottom: 22px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: $cyan-chat;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+  z-index: 50;
+  transition: all 0.15s ease;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  &:hover {
+    background-color: #0891b2;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ==========================================================
+// Toast Notification
+// ==========================================================
+.toastSuccess {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #10b981;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.toastError {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+// ==========================================================
+// Lead Detail / Edit View Extended Styles
+// ==========================================================
+
+.editViewWrapper {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 56px);
+  max-height: calc(100vh - 56px);
+  overflow: hidden;
+  background-color: var(--bg-form);
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.editMainWrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.editTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 14px 28px;
+  height: 64px;
+  min-height: 64px;
+  border-bottom: 1px solid var(--border-lead-section, #44403b);
+  background-color: var(--bg-dashboard, #1c1917);
+  flex-shrink: 0;
+  z-index: 15;
+}
+
+.tabPillGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tabPill {
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f4;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 120%;
+  text-align: center;
+  padding: 10px 14px;
+  height: 34px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  &.activeTabPill {
+    background: #fafaf9;
+    color: #44403b;
+    font-weight: 500;
+  }
+}
+
+.actionIconsGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.secondaryActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.actionIconBtn {
+  background: transparent;
+  border: none;
+  color: #a6a09b;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: #f5f5f4;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.saveBtnWhite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #f5f5f4;
+  color: #1c1917;
+  border: none;
+  border-radius: 6px;
+  width: 89px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 14px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #1c1917;
+  }
+
+  &:hover {
+    opacity: 0.92;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// ─── Pipeline Chevron Stepper ──────────────────────────────────────────────────
+
+.pipelineStepper {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background: var(--bg-pipeline);
+  border: 1px solid var(--border-pipeline);
+  border-radius: 6px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+.pipelineStep {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-lead-tab);
+  background: transparent;
+  position: relative;
+  cursor: default;
+
+  span {
+    position: relative;
+    z-index: 4;
+    white-space: nowrap;
+  }
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 28px;
+    height: 28px;
+    border-top: 1px solid var(--border-pipeline);
+    border-right: 1px solid var(--border-pipeline);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &.activePipelineStep {
+    background: var(--bg-pipeline-active);
+    color: var(--text);
+    font-weight: 600;
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 28px;
+      height: 28px;
+      background: var(--bg-pipeline-active);
+      z-index: 2;
+    }
+  }
+}
+
+// ─── Hero Summary Header Card ──────────────────────────────────────────────────
+
+.heroCard {
+  background: var(--bg-lead-hero);
+  border: 1px solid $border-subtle;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+
+.heroTopRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.heroIconBox {
+  width: 44px;
+  height: 44px;
+  background: var(--text);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-lead-btn);
+  flex-shrink: 0;
+}
+
+.heroMainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.heroCustomerName {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.heroContactLine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.heroPhoneLink {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.heroDivider {
+  color: var(--border-lead-strong);
+}
+
+.heroBottomMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-lead-meta);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+// ─── 3-Column Body Layout ──────────────────────────────────────────────────────
+
+.threeColLayout {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg-scroll-form);
+    border-radius: 3px;
+  }
+}
+
+.editSubSidebar {
+  width: 190px;
+  background-color: $bg-page;
+  border-right: 1px solid $border-subtle;
+  padding: 18px 10px;
+  flex-shrink: 0;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  align-self: flex-start;
+  z-index: 20;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg-scroll-form);
+  }
+}
+
+.editCenterContent {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 32px 240px;
+}
+
+.scrollBottomSpacer {
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+}
+
+.editRightSidebar {
+  width: 220px;
+  min-width: 220px;
+  background: #1c1917;
+  border: 1px solid #44403b;
+  border-radius: 6px;
+  padding: 0;
+  flex-shrink: 0;
+  height: max-content;
+  max-height: calc(100vh - 156px);
+  overflow-y: auto;
+  position: sticky;
+  top: 16px;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  margin-top: 16px;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #44403b;
+    border-radius: 2px;
+  }
+}
+
+// ─── Right Sidebar Unified Card ───────────────────────────────────────────────
+
+.activityPanel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 10px;
+  gap: 14px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+
+  &.bottomSection {
+    border-top: 1px solid var(--border-lead-section);
+    background: rgba(0, 0, 0, 0.18);
+  }
+}
+
+.infoTitle {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 120%;
+  color: #a6a09b;
+  margin: 0;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-lead-contact);
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  span {
+    word-break: break-all;
+  }
+}
+
+.infoIconBox {
+  width: 24px;
+  height: 32px;
+  background: var(--bg-lead-iconbox);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.recentUpdatesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.recentUpdatesTitleRow {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  height: 15px;
+
+  span {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #a6a09b;
+  }
+}
+
+.recentUpdatesList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.updateBox {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px 10px;
+  width: 100%;
+  border-bottom: 1px solid #44403b;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.updateBoxQuoted {
+    background: #292524;
+    border-width: 0 0 1px 3px;
+    border-style: solid;
+    border-color: #44403b;
+  }
+}
+
+// ── All Quotes Section Matching Screenshot ────────────────────────────────────
+
+.quotesSectionWrap {
+  margin-bottom: 28px;
+}
+
+.quotesHeaderRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.quotesTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.quotesAccentBar {
+  width: 26px;
+  height: 3px;
+  background-color: var(--text);
+  border-radius: 2px;
+}
+
+.quotesTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.createQuoteDropdownWrap {
+  position: relative;
+}
+
+.createQuoteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-lead-outline-btn);
+  border: 1px solid var(--border-lead-outline);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: var(--bg-lead-outline-hover);
+    border-color: var(--border-lead-outline-hover);
+  }
+}
+
+.plusSign {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.quoteDropdownMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+  min-width: 175px;
+  padding: 6px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quoteDropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-pill);
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background-color: var(--bg-lead-menu-hover);
+    color: var(--text);
+
+    svg {
+      color: var(--text);
+    }
+  }
+}
+
+.emptyQuoteCardBox {
+  background-color: var(--bg-dashboard);
+  border: 1px solid var(--border-lead);
+  border-radius: 8px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 44px 24px;
+}
+
+.emptyQuoteCircleIcon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: var(--bg-dashboard-card);
+  display: grid;
+  place-items: center;
+  color: var(--text-lead-muted);
+  margin-bottom: 14px;
+}
+
+.emptyQuoteTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 6px 0;
+}
+
+.emptyQuoteSubtitle {
+  font-size: 13px;
+  color: var(--text-lead-muted);
+  max-width: 420px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+// ── Select Quote Type Modal ───────────────────────────────────────────────────
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.15s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modalBox {
+  background-color: #ffffff;
+  color: #111827;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  padding: 20px 24px 22px;
+  position: relative;
+  animation: modalScaleUp 0.15s ease;
+}
+
+@keyframes modalScaleUp {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+  }
+}
+
+.modalCloseBtn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.modalSubtitle {
+  font-size: 12.5px;
+  color: #1f2937;
+  line-height: 1.45;
+  margin: 0 0 14px 0;
+}
+
+.modalSelectWrap {
+  margin-bottom: 16px;
+
+  select,
+  input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #111827;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #111827;
+    font-size: 12.5px;
+    outline: none;
+    cursor: pointer;
+
+    &:focus {
+      border-color: #16a2b9;
+      box-shadow: 0 0 0 1px #16a2b9;
+    }
+  }
+}
+
+.modalContinueBtn {
+  background-color: #16a2b9;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: #138496;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// ── PHP parity overrides — make Next.js fields exactly match add-lead.php lead_details.css ──
+
+// ── Inline-style replacements (no style={} in JSX) ──
+.hidden {
+  display: none;
+}
+
+.mt16 {
+  margin-top: 16px;
+}
+
+.mt24 {
+  margin-top: 24px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.loadingBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  font-size: 16px;
+  color: #888888;
+}
+
+.loadErrorWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  gap: 12px;
+
+  >.loadErrorText {
+    color: #ef4444;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  >.backBtn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 13px;
+  }
+}
+
+.activityPlaceholder {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+
+  >h3 {
+    color: var(--text);
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  >p {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  >.activitySub {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+}
+
+.otherOptionsTitle {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.emptyBoxAlt {
+  padding: 26px;
+  text-align: center;
+  color: var(--text-muted);
+  background-color: var(--bg-lead-hero);
+  border-radius: 8px;
+  border: 1px solid var(--border-lead-section);
+}
+
+.emptyBox {
+  padding: 30px 20px;
+  background: var(--bg-lead-hero);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-lead-input);
+
+  >.emptyBoxText {
+    margin: 0;
+  }
+}
+
+.quoteRowList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quoteRowCard {
+  background-color: var(--bg-lead-quote-row);
+  border: 1px solid var(--border-lead-quote);
+  border-radius: 8px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.15s ease;
+
+  >.quoteRowTitle {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+
+  >.quoteRowMenuWrap {
+    position: relative;
+
+    >.quoteRowMenuBtn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px 8px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      border-radius: 4px;
+    }
+
+    >.quoteRowDropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+      min-width: 180px;
+      padding: 6px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+}
+
+// -- Attachments Section -- PHP parity redesign --
+
+.attachSectionWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.attachHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.attachTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.attachAddNewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-lead-outline-btn);
+  border: 1px solid var(--border-lead-outline);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--bg-lead-outline-hover);
+    border-color: var(--border-lead-outline-hover);
+  }
+}
+
+.attachHiddenInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.attachBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.attachFileList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.attachFileRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--bg-dashboard);
+  border: 1px solid var(--border-lead-strong);
+  border-radius: 6px;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.attachFileIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.attachFileName {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text);
+  word-break: break-all;
+  min-width: 0;
+}
+
+.attachDeleteBtn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+  color: rgba(255, 255, 255, 0.8);
+
+  &:hover {
+    background-color: rgba(255, 80, 80, 0.15);
+  }
+}
+
+// Keep old names for compatibility
+.attachList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.attachHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileOverlayInput {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.quoteMenuBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-pill);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+
+  &:hover {
+    background-color: var(--bg-action);
+    color: var(--text);
+  }
+}

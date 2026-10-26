@@ -1,0 +1,556 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg-dashboard);
+  display: flex;
+  flex-direction: column;
+}
+
+.brandBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-section);
+
+  .brandName {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
+}
+
+.shell {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1 1 auto;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+  flex: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -50%;
+    height: 2px;
+    width: 100%;
+    background: var(--border);
+  }
+
+  &:first-child::before {
+    display: none;
+  }
+
+  .stepCircle {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background: var(--bg-track);
+    display: inline-block;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stepLabel {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  &.stepActive {
+    .stepCircle {
+      background: var(--bg-btn);
+      color: #fff;
+    }
+
+    .stepLabel {
+      color: var(--text);
+      font-weight: 600;
+    }
+  }
+
+  &.stepCompleted {
+    .stepCircle {
+      background: #16a34a;
+      color: #fff;
+    }
+
+    .stepLabel {
+      color: var(--text-soft);
+    }
+  }
+}
+
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHead {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border-soft);
+
+  .cardTitle {
+    margin: 0;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .cardSubtitle {
+    margin: 4px 0 0;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 22px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.cardActionsEnd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 14px 22px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.contractHeading {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.previewHead {
+  padding: 16px 22px 12px;
+
+  .previewTitle {
+    margin: 0;
+    color: var(--text-fm-accent);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .previewSubtitle {
+    margin: 4px 0 0;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+}
+
+.stateBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.pdfFrame {
+  width: 100%;
+  height: 1000px;
+  flex: 0 0 auto;
+  border: 0;
+  background: #fff;
+}
+
+.signPanel {
+  margin: 16px 22px 20px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 22px 20px;
+}
+
+.signColumns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.signCol {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    background: var(--bg-hover);
+  }
+
+  &.signColSelected {
+    background: var(--bg-hover);
+    box-shadow: inset 0 0 0 1.5px var(--text-fm-accent);
+  }
+}
+
+.signRadio {
+  width: 16px;
+  height: 16px;
+  margin: 12px 0 0;
+  flex: 0 0 auto;
+  accent-color: var(--text-fm-accent);
+  cursor: pointer;
+}
+
+.signColBody {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .secondaryBtn {
+    align-self: flex-start;
+  }
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.fileButton {
+  flex: 0 0 auto;
+  padding: 7px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: var(--border-input-hover);
+    color: var(--text);
+  }
+}
+
+.fileName {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uploadInput {
+  display: none;
+}
+
+.btnRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dashPreview {
+  border: 1px dashed var(--border-strong);
+  border-radius: 8px;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 8px;
+
+  .dashName {
+    font-family: "Cedarville Cursive", "Segoe Script", "Brush Script MT", cursive;
+    font-size: 30px;
+    color: #1a1a1a;
+    line-height: 1.2;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .dashPlaceholder {
+    color: #b6b6b6;
+    font-size: 12px;
+  }
+}
+
+.drawWrap {
+  position: relative;
+
+  .drawHint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b6b6b6;
+    font-size: 12px;
+    pointer-events: none;
+  }
+}
+
+.drawCanvas {
+  width: 100%;
+  height: 140px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  background: #fff;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+
+
+.fieldError {
+  margin: 0;
+  color: #d93025;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.uploadPreview {
+  max-width: 100%;
+  max-height: 96px;
+  object-fit: contain;
+  align-self: center;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.pdfFileNote {
+  color: var(--text-soft);
+  font-size: 13px;
+  text-align: center;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid var(--bg-btn);
+  background: var(--bg-btn);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.12s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--bg-btn-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--bg-hover);
+    border-color: var(--border-input-hover);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.successBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 56px 24px;
+  text-align: center;
+
+  .cardTitle {
+    margin: 0;
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .cardSubtitle {
+    margin: 0;
+    max-width: 460px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.stateWrap {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.stateCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 440px;
+  padding: 40px 32px;
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  background: var(--bg-panel);
+  text-align: center;
+
+  .stateTitle {
+    margin: 0;
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .stateText {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 767px) {
+  .shell {
+    padding: 16px;
+  }
+
+  .step {
+    .stepCircle {
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      font-size: 12px;
+    }
+
+    &::before {
+      top: 13px;
+    }
+
+    .stepLabel {
+      font-size: 11px;
+    }
+  }
+
+  .cardHead {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .signPanel {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 16px 14px;
+  }
+
+  .signColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .cardActions {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+
+    button,
+    a {
+      flex: 1;
+    }
+  }
+
+  .pdfFrame {
+    height: 700px;
+  }
+
+.infoPanel {
+  padding: 24px 22px;
+}
+
+.infoText {
+  margin: 0 auto;
+  max-width: 560px;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.successBlock {
+    padding: 40px 16px;
+  }
+}

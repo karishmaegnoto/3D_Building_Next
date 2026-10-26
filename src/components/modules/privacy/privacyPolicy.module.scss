@@ -1,0 +1,207 @@
+@use '../../../styles/variables.scss' as vars;
+
+.privacy {
+  --privacy-accent: var(--cyan);
+  --privacy-accent-soft: var(--cyan-glow);
+
+  padding: calc(5rem + 5rem) 0 5rem;
+  position: relative;
+  z-index: 1;
+
+  &__container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  &__hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: privacyFadeUp 0.5s ease both;
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  &__section {
+    margin-bottom: 3.5rem;
+    animation: privacyFadeUp 0.5s ease both;
+
+    @media (max-width: vars.$breakpoint-mobile) {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--privacy-accent);
+    margin-bottom: 1.25rem;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.35rem;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--privacy-accent);
+      border-radius: 2px;
+    }
+
+    @media (max-width: vars.$breakpoint-mobile) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__text {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__list {
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      padding-left: 2rem;
+      margin-bottom: 0.85rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        transform: translateX(5px);
+        color: var(--privacy-accent);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1.2rem;
+        color: var(--privacy-accent);
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__link {
+    color: var(--privacy-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+
+    &:hover {
+      opacity: 0.8;
+      color: var(--privacy-accent);
+    }
+  }
+
+  &__warning {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--amber);
+    background: var(--amber-glow);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--amber);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+    }
+  }
+}
+
+@keyframes privacyFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: vars.$breakpoint-mobile) {
+  .privacy {
+    padding: calc(4rem + 4rem) 0 3.5rem;
+
+    &__hero {
+      margin-bottom: 3rem;
+    }
+
+    &__list {
+      li {
+        font-size: 1rem;
+        padding-left: 1.75rem;
+      }
+    }
+  }
+}
+
+@media (max-width: vars.$breakpoint-small-mobile) {
+  .privacy {
+    &__container {
+      padding: 0 1.25rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__subtitle {
+      font-size: 1.1rem;
+    }
+
+    &__heading {
+      font-size: 1.35rem;
+
+      &::after {
+        width: 40px;
+      }
+    }
+  }
+}
