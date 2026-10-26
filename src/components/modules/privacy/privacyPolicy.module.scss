@@ -1,17 +1,18 @@
-@use '../../../styles/variables.scss' as vars;
+@use "../../../styles/variables.scss" as vars;
 
 .privacy {
   --privacy-accent: var(--cyan);
   --privacy-accent-soft: var(--cyan-glow);
 
-  padding: calc(5rem + 5rem) 0 5rem;
+  padding: 5rem 0 0 0;
   position: relative;
   z-index: 1;
 
   &__container {
-    max-width: 900px;
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 3rem 3rem;
   }
 
   &__hero {
@@ -55,7 +56,7 @@
     display: inline-block;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -0.35rem;
       left: 0;
@@ -95,7 +96,9 @@
       color: var(--text-primary);
       padding-left: 2rem;
       margin-bottom: 0.85rem;
-      transition: transform 0.2s ease, color 0.2s ease;
+      transition:
+        transform 0.2s ease,
+        color 0.2s ease;
 
       &:hover {
         transform: translateX(5px);
@@ -107,7 +110,7 @@
       }
 
       &::before {
-        content: '→';
+        content: "→";
         position: absolute;
         left: 0;
         top: 0;
@@ -122,7 +125,9 @@
     color: var(--privacy-accent);
     text-decoration: underline;
     text-underline-offset: 3px;
-    transition: opacity 0.2s ease, color 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease;
     font-weight: 500;
 
     &:hover {
@@ -145,7 +150,9 @@
     border-radius: 8px;
     padding: 1rem 1.25rem;
     margin: 1.5rem 0 0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
 
     &:hover {
       transform: translateY(-2px);
@@ -167,7 +174,28 @@
 
 @media (max-width: vars.$breakpoint-mobile) {
   .privacy {
-    padding: calc(4rem + 4rem) 0 3.5rem;
+    padding: 5rem 0 0 0;
+
+    &__hero {
+      margin-bottom: 3rem;
+    }
+
+    &__list {
+      li {
+        font-size: 1rem;
+        padding-left: 1.75rem;
+      }
+    }
+  }
+}
+
+@media (max-width: vars.$breakpoint-mobile) {
+  .privacy {
+    padding: 5rem 0 0 0;
+
+    &__container {
+      padding: 3rem 3rem;
+    }
 
     &__hero {
       margin-bottom: 3rem;
@@ -184,8 +212,10 @@
 
 @media (max-width: vars.$breakpoint-small-mobile) {
   .privacy {
+    padding: 3rem 0 2rem;
+
     &__container {
-      padding: 0 1.25rem;
+      padding: 3rem 3rem;
     }
 
     &__title {
