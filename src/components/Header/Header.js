@@ -1,11 +1,23 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from '../ThemeProvider';
 import ThemeToggle from '../Toggle/ThemeToggle';
+
+const NAV_ITEMS = [
+  { label: 'Home', hash: '#home' },
+  { label: 'Features', hash: '#features' },
+  { label: 'Configure', hash: '#configurator' },
+  { label: 'Contact', hash: '#contact' },
+];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme } = useTheme();
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="header">
@@ -15,7 +27,7 @@ export default function Header() {
             {/* <span className="logo-text">3D</span>
             <span className="logo-sub">ESTIMATOR</span> */}
 
-            {/* <Link to="/"> */}
+            <Link href="/" aria-label="3D Estimator home" onClick={closeMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="50"
@@ -32,16 +44,35 @@ export default function Header() {
                 fill="white"
               />
             </svg>
-            {/* </Link> */}
+            </Link>
           </div>
         </div>
 
         <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
           <ul className="header__nav-list">
-            <li><a href="#home" className="header__nav-link">Home</a></li>
-            <li><a href="#features" className="header__nav-link">Features</a></li>
-            <li><a href="#configurator" className="header__nav-link">Configure</a></li>
-            <li><a href="#contact" className="header__nav-link">Contact</a></li>
+            {NAV_ITEMS.map(({ label, hash }) => (
+              <li key={hash}>
+                {isHome ? (
+                  <a href={hash} className="header__nav-link" onClick={closeMenu}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link href={`/${hash}`} className="header__nav-link" onClick={closeMenu}>
+                    {label}
+                  </Link>
+                )}
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/privacy-policy"
+                className="header__nav-link"
+                aria-current={pathname === '/privacy-policy' ? 'page' : undefined}
+                onClick={closeMenu}
+              >
+                Privacy Policy
+              </Link>
+            </li>
           </ul>
         </nav>
 

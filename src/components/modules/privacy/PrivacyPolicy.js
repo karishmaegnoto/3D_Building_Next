@@ -19,7 +19,7 @@ const PrivacyPolicy = () => (
     <div className={styles.privacy__container}>
       <header className={styles.privacy__hero}>
         <h1 className={styles.privacy__title}>Data Privacy &amp; Legal Compliance</h1>
-        <p className={styles.privacy__subtitle}>How GripEstimator handles data</p>
+        {/* <p className={styles.privacy__subtitle}>How GripEstimator handles data</p> */}
       </header>
 
       <section className={styles.privacy__section}>

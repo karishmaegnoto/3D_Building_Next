@@ -1,12 +1,6 @@
 'use client';
 import { useState } from 'react';
-
-const BUILDING_IMAGES = {
-  carport: '/carport_.png',
-  barn: '/Barn_.png',
-  commercial: '/commercial_.png',
-  garage: '/Garage_.png',
-};
+import BuildingPreview3D from './BuildingPreview3D';
 
 export default function BuildingConfigurator() {
   const [config, setConfig] = useState({
@@ -47,43 +41,42 @@ export default function BuildingConfigurator() {
 
   return (
     <section className="configurator" id="configurator">
-      {/*
-        Rotation keyframes are declared globally once.
-        Using CSS animation on the <img> so it truly rotates (Y-axis spin).
-        key={config.type} forces React to remount the <img> on type change,
-        which restarts the animation from 0°, giving a clean switch.
-      */}
       <style>{`
-        @keyframes previewRotateY {
-          from { transform: perspective(800px) rotateY(0deg)   rotateX(6deg); }
-          to   { transform: perspective(800px) rotateY(360deg) rotateX(6deg); }
-        }
-        .preview-building-img {
-          max-width: 82%;
-          max-height: 185px;
-          width: auto;
-          height: auto;
-          object-fit: contain;
-          display: block;
-          margin: auto;
-          filter: drop-shadow(0 6px 22px rgba(0,212,255,0.42))
-                  drop-shadow(0 0 6px  rgba(0,212,255,0.2));
-          animation: previewRotateY 10s linear infinite;
-          transition: filter 0.35s ease;
-          cursor: pointer;
-        }
-        .preview-building-img:hover {
-          filter: drop-shadow(0 6px 36px rgba(0,212,255,0.7))
-                  drop-shadow(0 0 12px rgba(0,212,255,0.45));
-          animation-play-state: paused;
-        }
         .preview-building-wrap {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
-          min-height: 180px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: block;
+          z-index: 1;
+        }
+        .preview-building-canvas {
+          width: 100%;
+          height: 100%;
+          cursor: grab;
+          touch-action: none;
+        }
+        .preview-building-canvas:active {
+          cursor: grabbing;
+        }
+        .preview-building-canvas canvas {
+          display: block;
+          width: 100% !important;
+          height: 100% !important;
+          outline: none;
+        }
+        .preview-building-hint {
+          position: absolute;
+          right: 0.85rem;
+          bottom: 0.7rem;
+          z-index: 2;
+          pointer-events: none;
+          font-family: var(--font-condensed);
+          font-size: 0.6rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          opacity: 0.8;
         }
       `}</style>
 
@@ -191,17 +184,8 @@ export default function BuildingConfigurator() {
 
               <div className="preview-3d__building">
                 <div className="preview-building-wrap">
-                  {/*
-                    key={config.type} → remounts on every type change,
-                    restarting the CSS rotation from angle 0.
-                  */}
-                  <img
-                    key={config.type}
-                    src={BUILDING_IMAGES[config.type]}
-                    alt={`${config.type} building preview`}
-                    className="preview-building-img"
-                    title="Hover to pause rotation"
-                  />
+                  <BuildingPreview3D config={config} />
+                  <span className="preview-building-hint">Drag to rotate</span>
                 </div>
               </div>
 
